@@ -1,0 +1,22 @@
+{% extends 'events/base.html' %}
+{% block content %}
+<br><br><br><br>
+{% if user.is_authenticated %}
+<h1>Select User To Update</h1>
+<table class="table table-hover table-striped table-bordered">
+    {% for user in users %}
+    <tr>
+        <td>
+            <a href="{% url 'show-user' user.id %}">{{ user }}</a> <br>
+        </td>
+        <td align="right">
+            <a href="{% url 'update-userinfos' user.id %}" class="btn btn-outline-secondary btn-sm"> Update</a>
+            {% endfor %}
+        </td>
+    </tr>
+</table>
+{% else %}
+<h3 class="trial">Access Dennied. Please login</h3>
+{% endif %}
+<br>
+{% endblock %}

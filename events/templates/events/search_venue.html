@@ -1,0 +1,19 @@
+{% extends 'events/base.html' %}
+{% block content %}
+<br><br><br><br>
+{% if user.is_authenticated %}
+<center>
+    {% if searched %}
+    <h1>You searched for {{ searched }}</h1>
+    {% for venue in venues %}
+    <a href="{% url 'show-venues' venue.id %}">{{ venue }}</a><br>
+    {% endfor %}
+    {% else %}
+    <h1>Hey!! You Forgotten To Searched A Venue....</h1>
+    {% endif %}
+</center>
+{% else %}
+<h3 class="trial">Access to search dennied!! Please login to continue.
+</h3>
+{% endif %}
+{% endblock %}

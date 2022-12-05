@@ -1,0 +1,22 @@
+{% extends 'events/base.html' %}
+{% block content %}
+<br><br>
+{% if user.is_authenticated %}
+<h1>Venue!!</h1>
+<table class="table table-hover table-striped table-bordered">
+    {% for venue in venue_list %}
+    <tr>
+        <td>
+            <a href="{% url 'show-venues' venue.id %}">{{ venue }}</a> <br>
+        </td>
+        <td align="right">
+            <a href="{% url 'venue-update' venue.id %}" class="btn btn-outline-secondary btn-sm"> Update</a>
+            {% endfor %}
+        </td>
+    </tr>
+</table>
+{% else %}
+<h3 class="trial">Access Dennied. Please login!</h3>
+{% endif %}
+<br>
+{% endblock %}

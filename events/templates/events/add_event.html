@@ -1,0 +1,21 @@
+{% extends 'events/base.html' %}
+{% block content %}
+<br><br><br><br>
+{% if user.is_authenticated %}
+<h1>Add Event To Database</h1>
+<div class="shadow p-4 mb-5 bg-body rounded">
+    <form action="" method=POST>
+        {% if submitted %}
+        Your Event Was Submitted successfully!!!
+        {% else %}
+        {% csrf_token %}
+        {{ event.as_p }}
+
+        <input type="submit" value="Submit" class="btn btn-secondary">
+        {% endif %}
+    </form>
+</div>
+{% else %}
+<h3 class="trial">Please Sinup or Login To Add Events</h3>
+{% endif %}
+{% endblock %}

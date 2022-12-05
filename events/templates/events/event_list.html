@@ -1,0 +1,34 @@
+{% extends 'events/base.html' %}
+{% block content %}
+<br><br>
+<ul>
+    {% if user.is_authenticated %}
+    <h1>EVENTS</h1>
+    {% for events in event_list %}
+    <div class="card">
+        <div class="card-header">
+            <strong>EVENT TABLE</strong>
+        </div>
+        <div class="card-body">
+            <h6 class="card-title">{{ events.name }}</h6>
+            <p class="card-text"><strong>Venue: </strong> {{ events.venue }}</p>
+            <p class="card-text"><strong>Date:</strong> {{ events.event_date }}</p>
+            <p class="card-text"><strong>Manager:</strong> Mr. {{ events.manager }}</p>
+            <p class="card-text"><strong>Details:</strong> {{ events.description }}</p>
+            {% for attendance in events.attendee.all %}
+            {{ attendance.first_name }} {{ attendance.last_name }},
+            {% endfor %}
+            <a href="#" class="btn btn-primary">Read more</a>
+        </div>
+    </div>
+    <br>
+    {% endfor %}
+
+    {% else %}
+    <h3 class="trial">Sorry access dennied!
+        Login to asses this page!
+    </h3>
+    {% endif %}
+
+</ul>
+{% endblock %}

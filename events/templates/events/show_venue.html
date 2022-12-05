@@ -1,0 +1,35 @@
+{% extends 'events/base.html' %}
+{% load static %}
+{% block content %}
+<br><br><br><br>
+<br>
+{% if user.is_authenticated %}
+<h1>EVENT LOCATION</h1>
+Logged In User: {{ user}}
+<br>
+<div class="card">
+    <div class="card-header">
+        <strong>{{ get_venue }}</strong>
+    </div>
+    <div class="card-body">
+        <h6 class="card-title">{{ events.name }}</h6>
+        <p class="card-text"><strong>Venue: </strong> {{ get_venue.address }}</p>
+        <p class="card-text"><strong>Location:</strong> {{ get_venue.location }}</p>
+        <p class="card-text"><strong>Telephone:</strong> {{ get_venue.contact }}</p>
+        <p class="card-text"><strong>Mobile Phone:</strong> {{ get_venue.telephone }}</p>
+        <p class="card-text"><strong>Email:</strong> {{ get_venue.email }}</p>
+    </div>
+    {% if user == event.manager %}
+    <div class="card-footer ">
+        <a href="{% url 'event-update' get_venue.id %}" class="btn btn-outline-secondary btn-sm"> Update Events</a>
+        <a href="{% url 'delete_event' get_venue.id %}" class="btn btn-outline-danger btn-sm"> Delete Events</a>
+    </div>
+    {% endif %}
+</div>
+{% else %}
+<h3 class="trial">Please login! Access Denied</h3>
+{% endif %}
+<br>
+<br>
+
+{% endblock %}

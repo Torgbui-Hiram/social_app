@@ -1,0 +1,25 @@
+{% extends 'events/base.html' %}
+{% block content %}
+<br><br>
+{% if user.is_authenticated %}
+{% if user == singe_event.manager %}
+<h1>Update Events...</h1>
+Logged In User: <strong>{{ user }}</strong>
+<br>
+<div class="shadow p-4 mb-5 bg-body rounded">
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ event_form.as_p }}
+        <input type="Submit" value="Update" class="btn btn-secondary">
+        <br><br><br>
+    </form>
+</div>
+{% else %}
+<h3 class="trial">Sorry Only Event Manager's can update this page!</h3>
+Manager for this event is <strong>{{singe_event.manager}}</strong>
+{% endif %}
+{% else%}
+<h3 class="trial">Soory!! You need to be logged in to updade this page!</h3>
+<a href="{% url 'login' %}"><strong class="btn btn-secondary">Please Login Here</strong> </a>
+{% endif %}
+{% endblock %}

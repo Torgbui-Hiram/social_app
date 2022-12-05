@@ -1,0 +1,25 @@
+{% extends 'events/base.html' %}
+{% block content %}
+<br><br><br><br>
+<br>
+<ul>
+    <h1>User Details</h1>
+    <div class="card">
+        <div class="card-header">
+            <strong>{{ show_info.first_name }} {{ show_info.last_name }}</strong>
+        </div>
+        <div class="card-body">
+            <h6 class="card-title">PROFILE: {{ show_info.first_name }}</h6>
+            <p class="card-text"><strong>FirstName: </strong> {{ show_info.first_name }}</p>
+            <p class="card-text"><strong>LastName:</strong> {{ show_info.last_name }}</p>
+            <p class="card-text"><strong>Contact:</strong> {{ show_info.phone }}</p>
+        </div>
+        <div class="card-footer ">
+            <a href="{% url 'delete-user' show_info.id %}" class="btn btn-outline-danger btn-sm"> Delete User</a>
+        </div>
+    </div>
+    <br>
+    <br>
+</ul>
+
+{% endblock %}

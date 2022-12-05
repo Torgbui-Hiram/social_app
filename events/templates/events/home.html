@@ -1,0 +1,19 @@
+{% extends 'events/base.html' %}
+{% block content %}
+<br><br>
+<h1><span>PROGRAM </span>CALENDER </h1>
+<br><br>
+{% if user.is_authenticated %}
+<center>
+
+    <h1 class="disp">{{ user.username }} <br>
+        welcome to the year {{ year }}</h1>
+    <strong>Time: {{ current_time }}</strong>
+    {{ cal | safe}}
+    <br><br>
+    Copyright (c) {{ now }}
+</center>
+{% else %}
+<h3 class="trial">Please login to acces this page</h3>
+{% endif %}
+{% endblock %}
